@@ -10,7 +10,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "vercel-install": "npm install --ignore-scripts"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.10",
