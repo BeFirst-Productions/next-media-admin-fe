@@ -1,7 +1,8 @@
 import api from './axios'
+
 export const authApi = {
-  login:   (data) => api.post('http://localhost:8086/api/v1/admin/auth/login', data),
-  logout:  ()     => api.post('http://localhost:8086/api/v1/admin/auth/logout'),
-  getMe:   ()     => api.get('http://localhost:8086/api/v1/admin/auth/me'),
-  refresh: ()     => api.post('http://localhost:8086/api/v1/admin/auth/refresh'),
+  login:   (data) => api.post('/admin/auth/login', data),
+  logout:  ()     => api.post('/admin/auth/logout'),
+  getMe:   ()     => api.get('/admin/auth/me'),
+  refresh: ()     => api.post('/admin/auth/refresh'),
 }

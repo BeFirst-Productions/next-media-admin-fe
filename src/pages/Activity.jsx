@@ -70,6 +70,11 @@ export default function Activity() {
                     conf.bg
                   )}>
                     <Icon size={12} className={conf.color} />
+                    <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 flex items-center justify-center">
+                      <span className="text-[7px] font-black text-gray-900 dark:text-gray-100">
+                        {String((page - 1) * 15 + i + 1).padStart(2, '0')}
+                      </span>
+                    </div>
                   </div>
                   <div className="bg-white dark:bg-gray-800/50 rounded-xl p-4 sm:p-5 border border-gray-100 dark:border-gray-800 shadow-sm transition-shadow hover:shadow-md">
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-2">

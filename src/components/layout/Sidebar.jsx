@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { LayoutDashboard, BarChart3, Users, FileText, Settings, LogOut, ChevronLeft, ChevronRight, Zap, Activity } from 'lucide-react'
+import { LayoutDashboard, BarChart3, Users, FileText, Settings, LogOut, ChevronLeft, ChevronRight, Zap, Activity, Briefcase } from 'lucide-react'
 import { cn } from '@/utils/cn'
 import { useAuth } from '@/hooks/useAuth'
 import { useTheme } from '@/hooks/useTheme'
@@ -9,6 +9,8 @@ import { useTheme } from '@/hooks/useTheme'
 const NAV = [
   { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { to: '/analytics', label: 'Analytics', icon: BarChart3 },
+  { to: '/services', label: 'Services', icon: Briefcase },
+  { to: '/blogs', label: 'Blogs', icon: FileText },
   { to: '/activity', label: 'Activity', icon: Activity },
   { to: '/users', label: 'Users', icon: Users, superAdminOnly: true },
   { to: '/content', label: 'Content', icon: FileText },

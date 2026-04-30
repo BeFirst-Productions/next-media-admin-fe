@@ -1,10 +1,11 @@
 import api from './axios'
+
 export const userApi = {
-  list:           (params) => api.get('http://localhost:8086/api/v1/admin/admins', { params }),
-  getById:        (id)     => api.get(`http://localhost:8086/api/v1/admin/admins/${id}`),
-  create:         (data)   => api.post('http://localhost:8086/api/v1/admin/admins', data),
-  update:         (id, d)  => api.patch(`http://localhost:8086/api/v1/admin/admins/${id}`, d),
-  toggle:         (id)     => api.patch(`http://localhost:8086/api/v1/admin/admins/${id}/toggle`),
-  delete:         (id)     => api.delete(`http://localhost:8086/api/v1/admin/admins/${id}`),
-  changePassword: (data)   => api.patch('http://localhost:8086/api/v1/admin/admins/me/password', data),
+  list:           (params) => api.get('/admin/admins', { params }),
+  getById:        (id)     => api.get(`/admin/admins/${id}`),
+  create:         (data)   => api.post('/admin/admins', data),
+  update:         (id, d)  => api.patch(`/admin/admins/${id}`, d),
+  toggle:         (id)     => api.patch(`/admin/admins/${id}/toggle`),
+  delete:         (id)     => api.delete(`/admin/admins/${id}`),
+  changePassword: (data)   => api.patch('/admin/admins/me/password', data),
 }

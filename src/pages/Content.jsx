@@ -70,11 +70,14 @@ export default function Content() {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-          {data?.data?.map((post) => {
+          {data?.data?.map((post, index) => {
             const sent = scoreContentSentiment(post.body)
             return (
               <motion.div key={post._id} initial={{ opacity:0, y:8 }} animate={{ opacity:1, y:0 }}
-                className="card card-hover p-5 flex flex-col gap-3">
+                className="card card-hover p-5 flex flex-col gap-3 relative">
+                <div className="absolute -top-2 -left-2 w-7 h-7 rounded-full bg-brand-500 text-white text-[10px] font-black flex items-center justify-center shadow-lg border-2 border-white dark:border-gray-900 z-10">
+                  {String(index + 1).padStart(2, '0')}
+                </div>
                 <div className="flex items-start justify-between gap-2">
                   <h3 className="font-semibold text-gray-900 dark:text-gray-100 leading-snug line-clamp-2">{post.title}</h3>
                   <span className={cn('badge flex-shrink-0', post.isPublished?'badge-green':'badge-yellow')}>

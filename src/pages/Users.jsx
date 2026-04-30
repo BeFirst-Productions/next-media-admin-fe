@@ -57,14 +57,14 @@ export default function Users() {
         <div className="relative mb-4 max-w-xs">
           <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
           <input value={search} onChange={(e) => { setSearch(e.target.value); setPage(1) }}
-            placeholder="Search admins…" className="input-base pl-10" />
+            placeholder="Search admins…" className="input-base pl-10" spellCheck="true" />
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-100 dark:border-gray-800">
-                {['Admin','Role','Status','Created','Actions'].map((h) => (
+                {['SL No.','Admin','Role','Status','Created','Actions'].map((h) => (
                   <th key={h} className="py-3 px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">{h}</th>
                 ))}
               </tr>
@@ -72,13 +72,16 @@ export default function Users() {
             <tbody className="divide-y divide-gray-50 dark:divide-gray-800/50">
               {isLoading
                 ? Array.from({length:5}).map((_,i)=>(
-                    <tr key={i}>{Array.from({length:5}).map((_,j)=>(
+                    <tr key={i}>{Array.from({length:6}).map((_,j)=>(
                       <td key={j} className="py-4 px-4"><div className="skeleton h-4 rounded w-3/4" /></td>
                     ))}</tr>
                   ))
-                : data?.data?.map((admin) => (
+                : data?.data?.map((admin, index) => (
                     <motion.tr key={admin._id} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                       className="hover:bg-gray-50/50 dark:hover:bg-gray-800/30 transition-colors">
+                      <td className="py-3.5 px-4 font-bold text-gray-400 text-xs">
+                        {String((page - 1) * 10 + index + 1).padStart(2, '0')}
+                      </td>
                       <td className="py-3.5 px-4">
                         <div className="flex items-center gap-3">
                           <div className="w-9 h-9 rounded-full bg-brand-100 dark:bg-brand-900/40 flex items-center justify-center flex-shrink-0">
@@ -133,7 +136,7 @@ export default function Users() {
           ].map((f) => (
             <div key={f.name}>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">{f.label}</label>
-              <input {...register(f.name)} type={f.type} placeholder={f.placeholder} className="input-base" />
+              <input {...register(f.name)} type={f.type} placeholder={f.placeholder} className="input-base" spellCheck="true" />
               {errors[f.name] && <p className="mt-1 text-xs text-red-500">{errors[f.name].message}</p>}
             </div>
           ))}

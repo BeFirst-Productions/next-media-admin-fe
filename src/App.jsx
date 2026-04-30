@@ -5,13 +5,17 @@ import { useEffect } from 'react'
 import { useThemeStore } from '@/store/themeStore'
 import { Layout } from '@/components/layout/Layout'
 import { ProtectedRoute } from '@/components/layout/ProtectedRoute'
-import Login      from '@/pages/Login'
-import Dashboard  from '@/pages/Dashboard'
-import Analytics  from '@/pages/Analytics'
-import Activity   from '@/pages/Activity'
-import Users      from '@/pages/Users'
-import Content    from '@/pages/Content'
-import Settings   from '@/pages/Settings'
+import Login from '@/pages/Login'
+import Dashboard from '@/pages/Dashboard'
+import Analytics from '@/pages/Analytics'
+import Activity from '@/pages/Activity'
+import Users from '@/pages/Users'
+import Content from '@/pages/Content'
+import Services from '@/pages/Services'
+import Blogs from '@/pages/Blogs'
+import BlogEditor from '@/pages/BlogEditor'
+import BlogView from '@/pages/BlogView'
+import Settings from '@/pages/Settings'
 
 const qc = new QueryClient({
   defaultOptions: {
@@ -36,9 +40,14 @@ export default function App() {
             <Route element={<Layout />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/analytics" element={<Analytics />} />
-              <Route path="/activity"  element={<Activity />} />
-              <Route path="/content"   element={<Content />} />
-              <Route path="/settings"  element={<Settings />} />
+              <Route path="/activity" element={<Activity />} />
+              <Route path="/content" element={<Content />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/blogs" element={<Blogs />} />
+              <Route path="/blogs/new" element={<BlogEditor />} />
+              <Route path="/blogs/view/:id" element={<BlogView />} />
+              <Route path="/blogs/edit/:id" element={<BlogEditor />} />
+              <Route path="/settings" element={<Settings />} />
               <Route element={<ProtectedRoute requiredRole="superadmin" />}>
                 <Route path="/users" element={<Users />} />
               </Route>

@@ -8,7 +8,7 @@ import { useWebsiteAnalytics } from '@/hooks/useAnalytics'
 import { formatCurrency, formatPercent, formatNumber, timeAgo, formatDateTime, formatTime } from '@/utils/formatters'
 import { MiniSparkline } from '@/components/charts/MiniSparkline'
 import { userApi } from '@/api/user.api'
-import { contentApi } from '@/api/content.api'
+import { blogsApi } from '@/api/blogs.api'
 import { activityApi } from '@/api/activity.api'
 import { useAuth } from '@/hooks/useAuth'
 import { motion } from 'framer-motion'
@@ -36,9 +36,9 @@ export default function Dashboard() {
     enabled:  isSuperAdmin,
   })
   const { data: websiteData } = useWebsiteAnalytics()
-  const { data: contentData } = useQuery({
-    queryKey: ['content-list'],
-    queryFn:  () => contentApi.list().then((r) => r.data),
+  const { data: blogsData } = useQuery({
+    queryKey: ['blogs-list'],
+    queryFn:  () => blogsApi.list({ limit: 1 }).then((r) => r.data),
   })
   
   const { data: activityRes } = useQuery({
@@ -52,7 +52,7 @@ export default function Dashboard() {
       {/* Stat grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         <StatCard title="Total Admins"  value={usersData?.meta?.total ?? '—'} change={12}  icon={Users}     color="blue"   loading={!usersData && isSuperAdmin} />
-        <StatCard title="Content Posts" value={contentData?.data?.length ?? 0} change={5}  icon={FileText}  color="green" />
+        <StatCard title="Blog Posts" value={blogsData?.data?.total ?? 0} change={5}  icon={FileText}  color="green" />
         <StatCard title="Active Users"  value={websiteData?.activeUsers ?? '—'} icon={Users} color="purple" />
         <StatCard title="Bounce Rate"   value={websiteData ? `${websiteData.bounceRate}%` : '—'} icon={Globe} color="teal" />
       </div>
