@@ -12,6 +12,8 @@ import { RichTextEditor } from '@/components/ui/RichTextEditor'
 import { blogsApi } from '@/api/blogs.api'
 import { Spinner } from '@/components/ui/Spinner'
 import { cn } from '@/utils/cn'
+ 
+const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://yourdomain.com'
 
 const blogSchema = z.object({
   title: z.string().min(3, 'Title is too short'),
@@ -439,7 +441,7 @@ export default function BlogEditor() {
                           <div className="flex flex-col">
                              <span className="text-[11px] text-gray-900 dark:text-gray-100 font-bold">Google Search</span>
                              <span className="text-[10px] text-gray-400 font-mono tracking-tight flex items-center gap-1">
-                               https://yourdomain.com <span className="text-gray-200">/</span> blogs <span className="text-gray-200">/</span> {watchedSlug || 'narrative-slug'}
+                               {SITE_URL} <span className="text-gray-200">/</span> blogs <span className="text-gray-200">/</span> {watchedSlug || 'narrative-slug'}
                              </span>
                           </div>
                        </div>

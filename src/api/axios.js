@@ -2,8 +2,10 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useAuthStore } from '@/store/authStore'
 
+const API_BASE = import.meta.env.VITE_API_URL || '/api/v1'
+
 const api = axios.create({
-  baseURL: '/api/v1',
+  baseURL: API_BASE,
   withCredentials: true,
   timeout: 15000,
   headers: { 'Content-Type': 'application/json' },
@@ -34,7 +36,7 @@ api.interceptors.response.use(
       original._retry = true
       isRefreshing = true
       try {
-        const { data } = await axios.post('/api/v1/admin/auth/refresh', {}, { withCredentials: true })
+        const { data } = await axios.post(`${API_BASE}/admin/auth/refresh`, {}, { withCredentials: true })
         const newToken = data.data.accessToken
         useAuthStore.getState().updateToken(newToken)
         processQueue(null, newToken)
